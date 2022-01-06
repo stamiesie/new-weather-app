@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function Weather() {
-    return (
-        <div>
-            <h1>Hello!!!!</h1>
-        </div>
-    )
+export default class Weather extends Component {
+    render() {
+    return <h1>Loading...</h1>
+    }
 }
