@@ -5,12 +5,24 @@ import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import Location from '../components/Location';
 import { fetchWeather } from '../service/weatherAPI';
+import '../App.css';
 
-const cities = require('../city.list.min.json');
+const placesData = require('../city.list.min.json');
 
 const Weather = () => {
   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState({});
+  const [cities, setCities] = useState([]);
+
+  //   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.
+  useEffect(() => {
+    placesData.map((place) => {
+      place.description = `${place.name.toUpperCase()}${
+        place.state ? `, ${place.state}` : ''
+      }, ${place.country}`;
+      return place;
+    });
+  }, []);
 
   useEffect(() => {
     fetchWeather()
@@ -32,10 +44,20 @@ const Weather = () => {
   return (
     <>
       <Autocomplete
-        disablePortal
+        freeSolo
         className="search"
-        //   options={}
-        onSelect={(e) => {}}
+        options={cities}
+        onSelect={(e) => {
+          const value = e.target.value.toUpperCase();
+
+          //   Start Autocomplete after 3 characters.  If the query is included in a place description (made above in useEffect), it is an Autocomplete option.  Then limit to 10 options with slice.  Then set state (setCities) with the cities.
+          if (value.length >= 3) {
+            const placeOptions = placesData
+              .filter((place) => place.description.includes(value))
+              .slice(0, 15);
+            setCities(placeOptions.map((place) => place.description));
+          }
+        }}
         renderInput={(params) => (
           <TextField {...params} label="Search for a city" variant="outlined" />
         )}
