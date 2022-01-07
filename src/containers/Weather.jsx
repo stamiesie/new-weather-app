@@ -6,6 +6,8 @@ import { Autocomplete } from '@material-ui/lab';
 import Location from '../components/Location';
 import { fetchWeather } from '../service/weatherAPI';
 
+const cities = require('../city.list.min.json');
+
 const Weather = () => {
   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState({});
@@ -29,14 +31,16 @@ const Weather = () => {
 
   return (
     <>
-      <Location {...weather} />
       <Autocomplete
         disablePortal
         className="search"
         //   options={}
         onSelect={(e) => {}}
-        renderInput={(params) => <TextField {...params} label="search" />}
+        renderInput={(params) => (
+          <TextField {...params} label="Search for a city" variant="outlined" />
+        )}
       />
+      <Location {...weather} />
     </>
   );
 };
