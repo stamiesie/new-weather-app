@@ -1,6 +1,8 @@
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/state-in-constructor */
 import React, { useState, useEffect } from 'react';
+import { TextField } from '@material-ui/core';
+import { Autocomplete } from '@material-ui/lab';
 import Location from '../components/Location';
 import { fetchWeather } from '../service/weatherAPI';
 
@@ -25,7 +27,18 @@ const Weather = () => {
 
   if (loading) return <h1>Loading...</h1>;
 
-  return <Location {...weather} />;
+  return (
+    <>
+      <Location {...weather} />
+      <Autocomplete
+        disablePortal
+        className="search"
+        //   options={}
+        onSelect={(e) => {}}
+        renderInput={(params) => <TextField {...params} label="search" />}
+      />
+    </>
+  );
 };
 
 export default Weather;
