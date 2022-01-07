@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Location = ({ name, temperature, description, icon }) => (
+const Location = ({ name, temp, description, icon }) => (
   <div>
-    {/* <img src={icon} alt={description} /> */}
+    <img src={icon} alt={description} />
     <p>{name}</p>
-    <p>{temperature}</p>
+    <p>{temp}</p>
     <p>{description}</p>
   </div>
 );
 
 Location.propTypes = {
   name: PropTypes.string.isRequired,
-  temperature: PropTypes.number.isRequired,
+  temp: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
 };
