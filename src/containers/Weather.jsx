@@ -18,13 +18,14 @@ const Weather = () => {
           icon: result.weather[0].icon,
         })
       )
+      .catch((e) => console.log('Error: ', e))
       .finally(() => setLoading(false));
   }, []);
-  console.log(weather);
+  console.log('State Weather', weather);
 
   if (loading) return <h1>Loading...</h1>;
 
-  return <Location weather={weather} />;
+  return <Location {...weather} />;
 };
 
 export default Weather;

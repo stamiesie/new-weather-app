@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Location = ({ name, temp, description, icon }) => (
+const Location = ({ name, temperature, description, icon }) => (
   <div>
-    <img src={icon} alt={description} />
+    <img
+      src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+      alt={description}
+    />
     <p>{name}</p>
-    <p>{temp}</p>
+    <p>{Math.round(temperature)}&#176; F</p>
     <p>{description}</p>
   </div>
 );
 
 Location.propTypes = {
   name: PropTypes.string.isRequired,
-  temp: PropTypes.number.isRequired,
+  temperature: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
 };
