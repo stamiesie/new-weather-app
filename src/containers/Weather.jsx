@@ -4,14 +4,13 @@ import React, { useState, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import Location from '../components/Location';
-// import { fetchWeather } from '../service/weatherAPI';
 import { fetchWeatherById } from '../service/weatherAPI';
 import '../App.css';
 
 const placesData = require('../city.list.min.json');
 
 const Weather = () => {
-  const [loading, setLoading] = useState(true);
+  //   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState({});
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState();
@@ -26,37 +25,20 @@ const Weather = () => {
     });
   }, []);
 
-  //   useEffect(() => {
-  //     fetchWeather()
-  //       .then((result) =>
-  //         setWeather({
-  //           name: result.name,
-  //           temperature: result.main.temp,
-  //           description: result.weather[0].description,
-  //           icon: result.weather[0].icon,
-  //         })
-  //       )
-  //       .catch((e) => console.log('Error: ', e))
-  //       .finally(() => setLoading(false));
-  //   }, []);
-
-  //   4. use the city stored in state and fetch with city.id as param to get weather data every time the city input changes
+  //   4. use the city stored in state and fetch with city.id as param to get weather data every time the city input changes.  Then 'munged' data from fetch is placed in weather state.
   useEffect(() => {
     if (city) {
       fetchWeatherById(city.id)
-        .then((result) => {
+        .then((shapedData) => {
           setWeather({
-            name: result.name,
-            temperature: result.main.temp,
-            description: result.weather[0].description,
-            icon: result.weather[0].icon,
+            ...shapedData,
           });
         })
-        .catch((e) => console.log('Error: ', e))
-        .finally(() => setLoading(false));
+        .catch((e) => console.log('Error: ', e));
+      // .then(() => setLoading(false));
     }
   }, [city]);
-  console.log('State Weather', weather);
+  console.log('City Weather now in state', weather);
 
   //   if (loading) return <h1>Loading...</h1>;
 
