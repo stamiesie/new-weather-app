@@ -12,6 +12,6 @@ export const fetchWeatherById = async (cityId) => {
     icon: result.weather[0].icon,
   };
 
-  console.log('Munged', shapedData);
+  console.log('Shaped Data', shapedData);
   return shapedData;
 };
