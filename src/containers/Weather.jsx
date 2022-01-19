@@ -5,6 +5,8 @@ import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import Location from '../components/Location';
 import { fetchWeatherById } from '../service/weatherAPI';
+import { fetchGeolocation } from '../service/geolocation';
+// import { Geolocation } from '../hooks/Geolocation';
 import '../App.css';
 
 const placesData = require('../city.list.min.json');
@@ -14,6 +16,14 @@ const Weather = () => {
   const [weather, setWeather] = useState({});
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState();
+
+  //   console.log(fetchGeolocation());
+  //   useEffect(() => {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       console.log('Latitude is :', position.coords.latitude);
+  //       console.log('Longitude is :', position.coords.longitude);
+  //     });
+  //   }, []);
 
   //   1.   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.
   useEffect(() => {
@@ -27,6 +37,7 @@ const Weather = () => {
 
   //   4. use the city stored in state and fetch with city.id as param to get weather data every time the city input changes.  Then 'munged' data from fetch is placed in weather state.
   useEffect(() => {
+    fetchGeolocation();
     if (city) {
       fetchWeatherById(city.id)
         .then((shapedData) => {
