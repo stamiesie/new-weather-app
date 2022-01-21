@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import Location from '../components/Location';
-import { fetchWeatherById } from '../service/weatherAPI';
-// import { fetchGeolocation } from '../service/geolocation';
+import { fetchWeatherById, fetchWeatherByCoords } from '../service/weatherAPI';
 // import { Geolocation } from '../hooks/Geolocation';
 import '../App.css';
 
@@ -18,6 +17,16 @@ const Weather = () => {
   const [city, setCity] = useState();
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLat(position.coords.latitude);
+      setLong(position.coords.longitude);
+    });
+    fetchWeatherByCoords(lat, long);
+    console.log('Latitude is:', lat);
+    console.log('Longitude is:', long);
+  }, [lat, long]);
 
   //   1.   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.
   useEffect(() => {
@@ -43,15 +52,6 @@ const Weather = () => {
     }
   }, [city]);
   console.log('City Weather now in state', weather);
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLat(position.coords.latitude);
-      setLong(position.coords.longitude);
-    });
-    console.log('Latitude is:', lat);
-    console.log('Longitude is:', long);
-  }, [lat, long]);
 
   //   if (loading) return <h1>Loading...</h1>;
 
