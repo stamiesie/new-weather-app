@@ -23,13 +23,13 @@ export const fetchWeatherByCoords = async (lat, long) => {
 
   const result = await response.json();
 
-  const shapedData = {
+  const coordsData = {
     name: result.name,
     temperature: result.main.temp,
     description: result.weather[0].description,
     icon: result.weather[0].icon,
   };
 
-  console.log('Shaped Data COORDS', shapedData);
-  return shapedData;
+  console.log('Shaped Data COORDS', coordsData);
+  return coordsData;
 };
