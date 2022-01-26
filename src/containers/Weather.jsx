@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import Location from '../components/Location';
+import CurrentLocation from '../components/CurrentLocation';
 import { fetchWeatherById, fetchWeatherByCoords } from '../service/weatherAPI';
-// import { Geolocation } from '../hooks/Geolocation';
 import '../App.css';
 
 const placesData = require('../city.list.min.json');
@@ -17,7 +17,7 @@ const Weather = () => {
   const [city, setCity] = useState();
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
-  const [location, setLocation] = useState({});
+  //   const [location, setLocation] = useState([]);
 
   //   useEffect(() => {
   //     navigator.geolocation.getCurrentPosition((position) => {
@@ -32,32 +32,28 @@ const Weather = () => {
   //     console.log('Location is:', location);
   //   }, [lat, long]);
 
-  useEffect(() => {
-    const fetchLocationByCoords = async () => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLat(position.coords.latitude);
-        setLong(position.coords.longitude);
-      });
+  //   useEffect(() => {
+  //     const fetchLocationByCoords = async () => {
+  //       await navigator.geolocation.getCurrentPosition((position) => {
+  //         setLat(position.coords.latitude);
+  //         setLong(position.coords.longitude);
+  //       });
 
-      await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
-      )
-        .then((result) => result.json())
-        .then((result) => {
-          setLocation({
-            name: result.name,
-            temperature: result.main.temp,
-            description: result.weather[0].description,
-            icon: result.weather[0].icon,
-          });
-          console.log('Location is:', location);
-        });
-    };
-    fetchLocationByCoords();
-    console.log('Latitude is:', lat);
-    console.log('Longitude is:', long);
-  }, [lat, long]);
+  //       await fetch(
+  //         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
+  //       )
+  //         .then((result) => result.json())
+  //         .then((result) => {
+  //           setLocation(result);
+  //         });
+  //     };
+  //     fetchLocationByCoords();
+  //     // .finally(() => setLoading(false));
+  //     console.log('Latitude is:', lat);
+  //     console.log('Longitude is:', long);
+  //   }, [lat, long]);
 
+  //   console.log('Location is:', location);
   //   1.   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.
   useEffect(() => {
     placesData.map((place) => {
@@ -112,6 +108,7 @@ const Weather = () => {
           <TextField {...params} label="Search for a city" variant="outlined" />
         )}
       />
+      <CurrentLocation />
       <Location {...weather} />
     </>
   );

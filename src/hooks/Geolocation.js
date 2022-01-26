@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export const Geolocation = () => {
+export const useGeolocation = () => {
+  // const [loading, setLoading] = useState(true);
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [location, setLocation] = useState({});
@@ -17,17 +18,15 @@ export const Geolocation = () => {
       )
         .then((result) => result.json())
         .then((result) => {
-          setLocation({
-            name: result.name,
-            temperature: result.main.temp,
-            description: result.weather[0].description,
-            icon: result.weather[0].icon,
-          });
-          console.log('Location is:', location);
+          setLocation(result);
         });
     };
     fetchLocationByCoords();
-    console.log('Latitude is:', lat);
-    console.log('Longitude is:', long);
+    // .then(() => setLoading(false));
+    console.log('GEO Location is:', location);
+    console.log('GEO Latitude is:', lat);
+    console.log('GEO Longitude is:', long);
   }, [lat, long]);
+
+  return { location };
 };

@@ -6,7 +6,7 @@ export const fetchWeatherById = async (cityId) => {
   const result = await response.json();
 
   const shapedData = {
-    name: result.name,
+    town: result.name,
     temperature: result.main.temp,
     description: result.weather[0].description,
     icon: result.weather[0].icon,
@@ -24,7 +24,7 @@ export const fetchWeatherByCoords = async (lat, long) => {
   const result = await response.json();
 
   const coordsData = {
-    name: result.name,
+    town: result.name,
     temperature: result.main.temp,
     description: result.weather[0].description,
     icon: result.weather[0].icon,
