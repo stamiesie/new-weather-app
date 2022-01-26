@@ -5,7 +5,7 @@ import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import Location from '../components/Location';
 import CurrentLocation from '../components/CurrentLocation';
-import { fetchWeatherById, fetchWeatherByCoords } from '../service/weatherAPI';
+import { fetchWeatherById } from '../service/weatherAPI';
 import '../App.css';
 
 const placesData = require('../city.list.min.json');
@@ -17,41 +17,6 @@ const Weather = () => {
   const [city, setCity] = useState();
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
-  //   const [location, setLocation] = useState([]);
-
-  //   useEffect(() => {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       setLat(position.coords.latitude);
-  //       setLong(position.coords.longitude);
-  //     });
-  //     fetchWeatherByCoords(lat, long).then((coordsData) => {
-  //       setLocation({ ...coordsData });
-  //     });
-  //     console.log('Latitude is:', lat);
-  //     console.log('Longitude is:', long);
-  //     console.log('Location is:', location);
-  //   }, [lat, long]);
-
-  //   useEffect(() => {
-  //     const fetchLocationByCoords = async () => {
-  //       await navigator.geolocation.getCurrentPosition((position) => {
-  //         setLat(position.coords.latitude);
-  //         setLong(position.coords.longitude);
-  //       });
-
-  //       await fetch(
-  //         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=${process.env.REACT_APP_API_KEY}`
-  //       )
-  //         .then((result) => result.json())
-  //         .then((result) => {
-  //           setLocation(result);
-  //         });
-  //     };
-  //     fetchLocationByCoords();
-  //     // .finally(() => setLoading(false));
-  //     console.log('Latitude is:', lat);
-  //     console.log('Longitude is:', long);
-  //   }, [lat, long]);
 
   //   console.log('Location is:', location);
   //   1.   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.

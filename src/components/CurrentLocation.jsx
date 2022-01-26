@@ -6,9 +6,6 @@ const CurrentLocation = () => {
   const { location } = useGeolocation();
   console.log('CURRENT LOCATION', location);
   console.log('CITY', location.name);
-  //   console.log('Temperature', location.main.temp);
-
-  //   if (loading) return <h1>Loading...</h1>;
 
   return (
     <div>
@@ -23,8 +20,6 @@ const CurrentLocation = () => {
         <div>Loading...</div>
       )}
     </div>
-
-    // <div>Not loading</div>
   );
 };
 
