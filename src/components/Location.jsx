@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 const Location = ({ town, temperature, description, icon }) => (
   <div>
@@ -10,6 +11,8 @@ const Location = ({ town, temperature, description, icon }) => (
     <p>{town}</p>
     <p>{Math.round(temperature)}&#176; F</p>
     <p>{description}</p>
+    <p>{moment().format('dddd')}</p>
+    <p>{moment().format('LL')}</p>
   </div>
 );
 
