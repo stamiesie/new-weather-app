@@ -18,7 +18,6 @@ const Weather = () => {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
 
-  //   console.log('Location is:', location);
   //   1.   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.
   useEffect(() => {
     placesData.map((place) => {
@@ -73,8 +72,7 @@ const Weather = () => {
           <TextField {...params} label="Search for a city" variant="outlined" />
         )}
       />
-      <CurrentLocation />
-      <Location {...weather} />
+      {!city ? <CurrentLocation /> : <Location {...weather} />}
     </>
   );
 };
