@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGeolocation } from '../hooks/Geolocation';
+import { useGeolocation } from '../hooks/geolocation';
 import Location from './Location';
 
 const CurrentLocation = () => {

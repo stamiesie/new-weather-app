@@ -15,8 +15,8 @@ const Weather = () => {
   const [weather, setWeather] = useState({});
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState();
-  const [lat, setLat] = useState([]);
-  const [long, setLong] = useState([]);
+  //   const [lat, setLat] = useState([]);
+  //   const [long, setLong] = useState([]);
 
   //   1.   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.
   useEffect(() => {
