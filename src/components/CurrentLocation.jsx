@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGeolocation } from '../hooks/geolocation';
+import Loading from './Loading';
 import Location from './Location';
 
 const CurrentLocation = () => {
@@ -17,7 +18,7 @@ const CurrentLocation = () => {
           icon={location.weather[0].icon}
         />
       ) : (
-        <div>Loading...</div>
+        <Loading />
       )}
     </div>
   );

@@ -7,6 +7,7 @@ import Location from '../components/Location';
 import CurrentLocation from '../components/CurrentLocation';
 import { fetchWeatherById } from '../service/weatherAPI';
 import '../App.css';
+import Header from '../components/Header';
 
 const placesData = require('../city.list.min.json');
 
@@ -15,8 +16,6 @@ const Weather = () => {
   const [weather, setWeather] = useState({});
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState();
-  //   const [lat, setLat] = useState([]);
-  //   const [long, setLong] = useState([]);
 
   //   1.   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.
   useEffect(() => {
@@ -47,6 +46,7 @@ const Weather = () => {
 
   return (
     <>
+      <Header />
       <Autocomplete
         freeSolo
         className="search"
