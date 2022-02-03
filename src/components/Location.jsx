@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import styles from './Location.module.css';
 
-// const reload = () => {
-//   this.forceUpdate();
-// };
-
 const Location = ({ town, temperature, description, icon }) => (
   <div className={styles.locationParent}>
     <div className={styles.locationCard}>
@@ -20,9 +16,6 @@ const Location = ({ town, temperature, description, icon }) => (
       <p>Currently in {town}</p>
       <p>{description}</p>
       <p>{Math.round(temperature)}&#176; F</p>
-      {/* <button type="button" onClick={reload}>
-        Reload
-      </button> */}
     </div>
   </div>
 );

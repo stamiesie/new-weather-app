@@ -3,22 +3,21 @@
 import React, { useState, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
-import Location from '../components/Location';
-import CurrentLocation from '../components/CurrentLocation';
-import { fetchWeatherById } from '../service/weatherAPI';
-import '../App.css';
 import Header from '../components/Header';
-import ReloadButton from '../components/ReloadButton';
+import CurrentLocation from '../components/CurrentLocation';
+import Location from '../components/Location';
+import { fetchWeatherById } from '../service/weatherAPI';
 import { useGeolocation } from '../hooks/geolocation';
+import '../App.css';
 
 const placesData = require('../city.list.min.json');
 
 const Weather = () => {
-  //   const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState({});
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState();
   const [counter, setCounter] = useState(0);
+  const [input, setInput] = useState(null);
 
   const { location } = useGeolocation(counter);
 
@@ -26,6 +25,7 @@ const Weather = () => {
     setCity('');
     setWeather({});
     setCounter(counter + 1);
+    setInput(null);
     console.log('COUNTER', counter);
     console.log('ONCLICK', location);
     console.log('CITY STATE', city);
@@ -52,12 +52,9 @@ const Weather = () => {
           });
         })
         .catch((e) => console.log('Error: ', e));
-      // .then(() => setLoading(false));
     }
-  }, [city]);
+  }, [city, counter]);
   console.log('City Weather now in state', weather);
-
-  //   if (loading) return <h1>Loading...</h1>;
 
   return (
     <>
@@ -66,6 +63,10 @@ const Weather = () => {
         freeSolo
         className="search"
         options={cities}
+        value={input}
+        onChange={(event, newInput) => {
+          setInput(newInput);
+        }}
         onSelect={(e) => {
           const value = e.target.value.toUpperCase();
 
@@ -88,7 +89,7 @@ const Weather = () => {
         )}
       />
       {!city ? <CurrentLocation /> : <Location {...weather} />}
-      <ReloadButton />
+
       <button type="button" onClick={handleClick}>
         WEATHER
       </button>

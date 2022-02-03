@@ -1,6 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useGeolocation } from '../hooks/geolocation';
-// import CurrentLocation from './CurrentLocation';
 
 const ReloadButton = () => {
   const [count, setCount] = useState(0);
@@ -18,8 +17,6 @@ const ReloadButton = () => {
       </button>
     </div>
   );
-
-  //   return <CurrentLocation location={location} />
 };
 
 export default ReloadButton;
