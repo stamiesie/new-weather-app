@@ -8,6 +8,8 @@ import CurrentLocation from '../components/CurrentLocation';
 import { fetchWeatherById } from '../service/weatherAPI';
 import '../App.css';
 import Header from '../components/Header';
+import ReloadButton from '../components/ReloadButton';
+import { useGeolocation } from '../hooks/geolocation';
 
 const placesData = require('../city.list.min.json');
 
@@ -16,6 +18,19 @@ const Weather = () => {
   const [weather, setWeather] = useState({});
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState();
+  const [counter, setCounter] = useState(0);
+
+  const { location } = useGeolocation(counter);
+
+  const handleClick = () => {
+    setCity('');
+    setWeather({});
+    setCounter(counter + 1);
+    console.log('COUNTER', counter);
+    console.log('ONCLICK', location);
+    console.log('CITY STATE', city);
+    console.log('WEATHER STATE', weather);
+  };
 
   //   1.   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.
   useEffect(() => {
@@ -73,6 +88,10 @@ const Weather = () => {
         )}
       />
       {!city ? <CurrentLocation /> : <Location {...weather} />}
+      <ReloadButton />
+      <button type="button" onClick={handleClick}>
+        WEATHER
+      </button>
     </>
   );
 };

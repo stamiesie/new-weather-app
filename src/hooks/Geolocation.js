@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
 
-export const useGeolocation = () => {
+export const useGeolocation = (loc = '') => {
   // const [loading, setLoading] = useState(true);
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [location, setLocation] = useState({});
+  // const [counter, setCounter] = useState(0);
+  // const [click, setClick] = useState(true);
+
+  // const handleClick = () => {
+  //   console.log('CLICKED');
+  // };
 
   useEffect(() => {
     const fetchLocationByCoords = async () => {
@@ -21,12 +27,12 @@ export const useGeolocation = () => {
           setLocation(result);
         });
     };
-    fetchLocationByCoords();
+    setTimeout(() => fetchLocationByCoords(), 1000);
     // .then(() => setLoading(false));
     console.log('GEO Location is:', location);
     console.log('GEO Latitude is:', lat);
     console.log('GEO Longitude is:', long);
-  }, [lat, long]);
+  }, [lat, long, loc]);
 
   return { location };
 };
