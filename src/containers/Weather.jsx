@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
+// import MyLocationTwoToneIcon from '@mui/icons-material/MyLocationTwoTone';
 import Header from '../components/Header';
 import CurrentLocation from '../components/CurrentLocation';
 import Location from '../components/Location';
 import { fetchWeatherById } from '../service/weatherAPI';
 import { useGeolocation } from '../hooks/geolocation';
 import '../App.css';
+import ReloadButton from '../components/ReloadButton';
 
 const placesData = require('../city.list.min.json');
 
@@ -21,7 +23,8 @@ const Weather = () => {
 
   const { location } = useGeolocation(counter);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     setCity('');
     setWeather({});
     setCounter(counter + 1);
@@ -90,9 +93,11 @@ const Weather = () => {
       />
       {!city ? <CurrentLocation /> : <Location {...weather} />}
 
-      <button type="button" onClick={handleClick}>
+      {/* <button type="button" onClick={handleClick}>
         Reload
-      </button>
+      </button> */}
+
+      <ReloadButton onClick={handleClick} />
     </>
   );
 };

@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
-import { useGeolocation } from '../hooks/geolocation';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const ReloadButton = () => {
-  const [count, setCount] = useState(0);
-  const { location } = useGeolocation(count);
+const ReloadButton = ({ onClick }) => (
+  <div>
+    <button type="button" onClick={onClick}>
+      Reload
+    </button>
+  </div>
+);
 
-  const handleClick = () => {
-    setCount(count + 1);
-    console.log('ONCLICK', location);
-    console.log('ONCLICK Count', count);
-  };
-  return (
-    <div>
-      <button type="button" onClick={handleClick}>
-        Reload
-      </button>
-    </div>
-  );
+ReloadButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ReloadButton;

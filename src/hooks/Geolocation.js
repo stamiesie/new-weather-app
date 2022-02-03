@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useGeolocation = (loc = '') => {
+export const useGeolocation = () => {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [location, setLocation] = useState({});
@@ -20,7 +20,7 @@ export const useGeolocation = (loc = '') => {
           setLocation(result);
         });
     };
-    setTimeout(() => fetchLocationByCoords(), 1000);
+    setTimeout(() => fetchLocationByCoords(), 2000);
 
     console.log('GEO Location is:', location);
     console.log('GEO Latitude is:', lat);
