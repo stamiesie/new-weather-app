@@ -93,10 +93,6 @@ const Weather = () => {
       />
       {!city ? <CurrentLocation /> : <Location {...weather} />}
 
-      {/* <button type="button" onClick={handleClick}>
-        Reload
-      </button> */}
-
       <ReloadButton onClick={handleClick} />
     </>
   );
