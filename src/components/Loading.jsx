@@ -4,8 +4,10 @@ import loading from '../assets/spinner.gif';
 
 const Loading = () => (
   <div className={styles.loadingParent}>
-    <img src={loading} alt="Loading..." />
-    <p>Fetching Current Weather</p>
+    <div className={styles.loadingCard}>
+      <img src={loading} alt="Loading..." />
+      <p>Fetching Current Weather</p>
+    </div>
   </div>
 );
 
