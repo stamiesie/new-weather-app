@@ -10,6 +10,7 @@ const Location = ({ town, temperature, description, icon }) => (
         {moment().format('dddd')} {moment().format('LL')}
       </p>
       <img
+        className={styles.icon}
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
         alt={description}
       />

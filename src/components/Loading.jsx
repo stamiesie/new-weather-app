@@ -7,6 +7,7 @@ const Loading = () => (
     <div className={styles.loadingCard}>
       <img src={loading} alt="Loading..." />
       <p>Fetching Current Weather</p>
+      <p className={styles.hiddenMsg}>Almost there...</p>
     </div>
   </div>
 );

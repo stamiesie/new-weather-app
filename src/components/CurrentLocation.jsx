@@ -5,8 +5,8 @@ import Location from './Location';
 
 const CurrentLocation = () => {
   const { location } = useGeolocation();
-  console.log('CURRENT LOCATION', location);
-  console.log('CITY', location.name);
+  // console.log('CURRENT LOCATION', location);
+  // console.log('CITY', location.name);
 
   return (
     <div>

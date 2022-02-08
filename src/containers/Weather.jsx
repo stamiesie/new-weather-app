@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
-// import MyLocationTwoToneIcon from '@mui/icons-material/MyLocationTwoTone';
 import Header from '../components/Header';
 import CurrentLocation from '../components/CurrentLocation';
 import Location from '../components/Location';
@@ -21,7 +20,7 @@ const Weather = () => {
   const [counter, setCounter] = useState(0);
   const [input, setInput] = useState(null);
 
-  const { location } = useGeolocation(counter);
+  // const { location } = useGeolocation(counter);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -29,10 +28,10 @@ const Weather = () => {
     setWeather({});
     setCounter(counter + 1);
     setInput(null);
-    console.log('COUNTER', counter);
-    console.log('ONCLICK', location);
-    console.log('CITY STATE', city);
-    console.log('WEATHER STATE', weather);
+    // console.log('COUNTER', counter);
+    // console.log('ONCLICK', location);
+    // console.log('CITY STATE', city);
+    // console.log('WEATHER STATE', weather);
   };
 
   //   1.   loop (map) over placeData, create a description field using NAME, STATE, COUNTRY for Autocomplete component.  If there's no state, insert an empty string. Then return each place.
@@ -67,6 +66,7 @@ const Weather = () => {
         className="search"
         options={cities}
         value={input}
+        sx={{ width: 400 }}
         onChange={(event, newInput) => {
           setInput(newInput);
         }}

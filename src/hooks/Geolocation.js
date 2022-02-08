@@ -22,9 +22,9 @@ export const useGeolocation = () => {
     };
     setTimeout(() => fetchLocationByCoords(), 2000);
 
-    console.log('GEO Location is:', location);
-    console.log('GEO Latitude is:', lat);
-    console.log('GEO Longitude is:', long);
+    // console.log('GEO Location is:', location);
+    // console.log('GEO Latitude is:', lat);
+    // console.log('GEO Longitude is:', long);
   }, [lat, long]);
 
   return { location };
