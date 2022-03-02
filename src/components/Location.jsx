@@ -6,9 +6,8 @@ import styles from './Location.module.css';
 const Location = ({ town, temperature, description, icon }) => (
   <div className={styles.locationParent}>
     <div className={styles.locationCard}>
-      <p>
-        {moment().format('dddd')} {moment().format('LL')}
-      </p>
+      <p>{moment().format('dddd')}</p>
+      <p>{moment().format('LL')}</p>
       <img
         className={styles.icon}
         src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
