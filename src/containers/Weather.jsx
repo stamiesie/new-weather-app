@@ -7,8 +7,9 @@ import Header from '../components/Header';
 import CurrentLocation from '../components/CurrentLocation';
 import Location from '../components/Location';
 import { fetchWeatherById } from '../service/weatherAPI';
-import '../App.css';
 import ReloadButton from '../components/ReloadButton';
+import '../App.css';
+import styles from './Weather.module.css';
 
 const placesData = require('../city.list.min.json');
 
@@ -58,42 +59,48 @@ const Weather = () => {
   console.log('City Weather now in state', weather);
 
   return (
-    <>
+    <div>
       <Header />
-      <Autocomplete
-        freeSolo
-        className="search"
-        options={cities}
-        value={input}
-        sx={{ width: 400 }}
-        onChange={(event, newInput) => {
-          setInput(newInput);
-        }}
-        onSelect={(e) => {
-          const value = e.target.value.toUpperCase();
+      <div className={styles.searchDiv}>
+        <Autocomplete
+          freeSolo
+          className="search"
+          options={cities}
+          value={input}
+          style={{ width: 400 }}
+          onChange={(event, newInput) => {
+            setInput(newInput);
+          }}
+          onSelect={(e) => {
+            const value = e.target.value.toUpperCase();
 
-          //   2.   Start Autocomplete after 3 characters.  If the query is included in a place description (made above in useEffect), it is an Autocomplete option.  Then limit to 10 options with slice.  Then set state (setCities) with the cities.
-          if (value.length >= 3) {
-            const placeOptions = placesData
-              .filter((place) => place.description.includes(value))
-              .slice(0, 15);
-            setCities(placeOptions.map((place) => place.description));
+            //   2.   Start Autocomplete after 3 characters.  If the query is included in a place description (made above in useEffect), it is an Autocomplete option.  Then limit to 10 options with slice.  Then set state (setCities) with the cities.
+            if (value.length >= 3) {
+              const placeOptions = placesData
+                .filter((place) => place.description.includes(value))
+                .slice(0, 15);
+              setCities(placeOptions.map((place) => place.description));
 
-            // 3.   match user input to place description to return the location weather in the API call, then put that location object into state
-            const selected = placesData.find(
-              (place) => place.description === value
-            );
-            setCity(selected);
-          }
-        }}
-        renderInput={(params) => (
-          <TextField {...params} label="Search for a city" variant="outlined" />
-        )}
-      />
+              // 3.   match user input to place description to return the location weather in the API call, then put that location object into state
+              const selected = placesData.find(
+                (place) => place.description === value
+              );
+              setCity(selected);
+            }
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Search for a city"
+              variant="outlined"
+            />
+          )}
+        />
+      </div>
       {!city ? <CurrentLocation /> : <Location {...weather} />}
 
       <ReloadButton onClick={handleClick} />
-    </>
+    </div>
   );
 };
 

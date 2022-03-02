@@ -4,8 +4,12 @@ body{
   font-family: 'Comfortaa', cursive;
 }
 
-.search {
-  margin: 2px auto;
-  width: 400px;
-  border-radius: 3px;
+p {
+  font-size: 1.5em;
 }
+
+/* @media all and (max-width: 599px) {
+  body {
+    width: 70%;
+  }
+} */
