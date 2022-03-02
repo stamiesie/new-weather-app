@@ -13,7 +13,8 @@ const Location = ({ town, temperature, description, icon }) => (
         src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
         alt={description}
       />
-      <p>Currently in {town}</p>
+      <p>Currently in</p>
+      <p>{town}</p>
       <p>{description}</p>
       <p>{Math.round(temperature)}&#176; F</p>
     </div>
