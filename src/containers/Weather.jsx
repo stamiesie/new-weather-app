@@ -7,7 +7,6 @@ import Header from '../components/Header';
 import CurrentLocation from '../components/CurrentLocation';
 import Location from '../components/Location';
 import { fetchWeatherById } from '../service/weatherAPI';
-import { useGeolocation } from '../hooks/geolocation';
 import '../App.css';
 import ReloadButton from '../components/ReloadButton';
 
