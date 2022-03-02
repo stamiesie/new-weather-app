@@ -20,7 +20,7 @@ export const useGeolocation = () => {
           setLocation(result);
         });
     };
-    setTimeout(() => fetchLocationByCoords(), 2000);
+    setTimeout(() => fetchLocationByCoords(), 1000);
 
     // console.log('GEO Location is:', location);
     // console.log('GEO Latitude is:', lat);
