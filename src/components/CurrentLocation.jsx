@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGeolocation } from '../hooks/geolocation';
+import { useGeolocation } from '../hooks/Geolocation';
 import Loading from './Loading';
 import Location from './Location';
 
