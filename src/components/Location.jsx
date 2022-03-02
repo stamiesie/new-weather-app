@@ -11,7 +11,7 @@ const Location = ({ town, temperature, description, icon }) => (
       </p>
       <img
         className={styles.icon}
-        src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+        src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
         alt={description}
       />
       <p>Currently in {town}</p>
