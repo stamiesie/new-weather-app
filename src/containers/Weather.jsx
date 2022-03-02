@@ -67,7 +67,7 @@ const Weather = () => {
           className="search"
           options={cities}
           value={input}
-          style={{ width: 400 }}
+          style={{ width: 300 }}
           onChange={(event, newInput) => {
             setInput(newInput);
           }}
